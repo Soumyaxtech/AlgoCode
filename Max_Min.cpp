@@ -3,10 +3,13 @@
 
 using namespace std;
 void MAX_MIN(int arr[],int low,int high,int *max,int *min){
-
+        for(int i=low;i<=high;i++){
+            cout<<arr[i]<<" ";
+        }
+        cout<<endl;
         if(low==high){
             *max=*min=arr[low];
-            return;
+            cout<<"element "<<arr[low]<<" max "<<*max<<" min "<<*min<<endl;
         }
         else if(high==low+1){
 
@@ -18,6 +21,7 @@ void MAX_MIN(int arr[],int low,int high,int *max,int *min){
                  *min=arr[low];
                 *max=arr[high];
             }
+            cout<<"element "<<arr[low]<<" , "<<arr[high]<<" max "<<*max<<" min "<<*min<<endl;
         }
         else{
             int mid=(low+high)/2;
@@ -36,6 +40,15 @@ void MAX_MIN(int arr[],int low,int high,int *max,int *min){
             else{
                 *min=right_min;
             }
+            cout<<"mergeing subarray ";
+            for(int i=low;i<=mid;i++){
+                cout<<arr[i]<<" ";
+            }
+            cout<<"and ";
+            for(int i=mid+1;i<=high;i++){
+                cout<<arr[i]<<" ";
+            }
+            cout<<endl;
         }
         return;
 }
