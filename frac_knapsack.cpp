@@ -50,6 +50,7 @@ float knapsack(float w[], float p[], int n, float W) {
     float profit = 0;
     for (int i = 1; i <= n; i++) {
         profit = profit + x[i] * p[i];
+        cout<<profit;
     }
     return profit;
 }
