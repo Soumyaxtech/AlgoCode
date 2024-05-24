@@ -1,5 +1,5 @@
 #include<iostream>
-#include<climits>
+
 
 using namespace std;
 void MAX_MIN(int arr[],int low,int high,int *max,int *min){
