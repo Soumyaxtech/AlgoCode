@@ -1,69 +1,59 @@
-#include <iostream>
-#include <cmath>
+#include<iostream>
+
 using namespace std;
 
-int n, count = 0;
-int x[15];
+const int N=100;
+char b[N][N];
 
-void print() {
-    cout << "\n\nThe column vector is:\n\n";
-    for (int i = 1; i <= n; i++) {
-        cout << x[i] << "\t";
-    }
-    cout << "\n\nSolution " << ++count << ":\n\n";
-    
-    // Print column numbers for reference
-    for (int i = 1; i <= n; i++) {
-        cout << "\t" << i;
-    }
-    cout << endl;
-
-    // Print the board
-    for (int i = 1; i <= n; i++) {
-        cout << i;
-        for (int j = 1; j <= n; j++) {
-            if (x[i] == j)
-                cout << "\tQ";
-            else
-                cout << "\t0";
+void print_board(char b[N][N],int n){
+    static int sol=0;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cout<<b[i][j];
         }
-        cout << endl;
+        cout<<endl;
     }
-    cout << endl;
+    sol++;
+    cout<<"NUMBER OF SOLUTION "<<sol<<endl<<endl;
 }
 
-bool is_safe(int k, int i) {
-    for (int j = 1; j <= k - 1; j++) {
-        if (x[j] == i || (fabs(x[j] - i) == fabs(k - j))) {
-            return false;
-        }
-    }
-    return true;
-}
 
-void nqueen(int k, int n) {
-    for (int col = 1; col <= n; col++) {
-        if (is_safe(k, col)) {
-            x[k] = col;
-            if (k == n) {
-                print();
-            } else {
-                nqueen(k + 1, n);
-            }
+void solve(int col,char b[N][N],int n,int lr[],int ud[],int ld[]){
+    if(col==n){
+        print_board(b,n);
+        return;
+    }
+    for(int row=0;row<n;row++){
+        if(lr[row]==0 && ud[(n-1)+(col-row)]==0 && ld[(col+row)]==0){
+            b[row][col]='Q';
+            lr[row]=1;
+            ud[(n-1)+(col-row)]=1;
+            ld[(col+row)]=1;
+            solve(col+1,b,n,lr,ud,ld);
+            b[row][col]='.';
+            lr[row]=0;
+            ud[(n-1)+(col-row)]=0;
+            ld[(col+row)]=0;
         }
     }
 }
-
-int main() {
-    cout << "Enter the number of queens: ";
-    cin >> n;
-    if (n < 1) {
-        cout << "Number of queens must be at least 1.\n";
-        return 1;
+int main(){
+    int n;
+    cout<<"enter number of queen ";
+    cin>>n;
+    int lr[n],ud[2*n-1],ld[2*n-1];
+    for(int i=0;i<n;i++){
+        lr[i]=0;
     }
-    nqueen(1, n);
-    if (count == 0) {
-        cout << "No solutions found for " << n << " queens.\n";
+    for(int i=0;i<2*n-1;i++){
+        ud[i]=0;
+        ld[i]=0;
     }
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            b[i][j]='.';
+        }
+    }
+    solve(0,b,n,lr,ud,ld);
     return 0;
 }
