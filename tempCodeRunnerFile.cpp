@@ -1,2 +1,1 @@
-arr1[i] = arr[l + i];
-    }
+arr2[

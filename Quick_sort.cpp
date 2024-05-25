@@ -2,6 +2,13 @@
 
 using namespace std;
 
+void display(int arr[],int n){
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+
+}
+
 int pertition(int arr[],int low,int high){
     int pivot=arr[high];
     int i=low-1;
@@ -18,17 +25,12 @@ int pertition(int arr[],int low,int high){
 void Quick_sort(int arr[],int low,int high){
     if(low<high){
         int k=pertition(arr,low,high);
+        cout<<endl;
         Quick_sort(arr,low,k-1);
         Quick_sort(arr,k+1,high);
     }
 }
 
-void display(int arr[],int n){
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }
-
-}
 
 int main(){
     int n;
