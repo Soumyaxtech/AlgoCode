@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 
-void display(float arr[], int n) {
+void display(float w[],float p[], int n) {
     for (int i = 1; i <= n; i++) {
-        cout << arr[i] << " ";
+        cout <<"profit "<<p[i]<<" weight "<< w[i] << endl;
     }
     cout << endl;
 }
@@ -50,7 +50,7 @@ float knapsack(float w[], float p[], int n, float W) {
     float profit = 0;
     for (int i = 1; i <= n; i++) {
         profit = profit + x[i] * p[i];
-        cout<<profit;
+        cout<<profit<<endl;
     }
     return profit;
 }
@@ -77,12 +77,11 @@ int main() {
     cout << "Enter the capacity of the knapsack: ";
     cin >> W;
 
-    float profit = knapsack(w, p, n, W);
-    cout << "The resulting profits array: ";
-    display(p, n);
-    cout << "The resulting weights array: ";
-    display(w, n);
-    cout << "Maximum profit: " << profit << endl;
-
+    cout<<"before using fractional knapsack "<<endl;
+    display(w,p,n);
+    float profit=knapsack(w,p,n,W);
+    cout<<"after fractional knapsack "<<endl;
+    display(w,p,n);
+    cout<<"maximum profit "<<profit;
     return 0;
 }
