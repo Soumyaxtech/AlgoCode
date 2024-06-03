@@ -11,7 +11,7 @@ public:
 int nov=0;
 int noe=0;
 
-Edge graph[100]={};
+Edge graph[10]={};
 void readGraph(){
     ifstream myfile("kruskal.txt");
     myfile>>nov;
@@ -39,7 +39,7 @@ void bubble_sort(){
 int parent[100];
 
 void makeSet(){
-    for(int i=0;i<nov;i++){
+    for(int i=1;i<=nov;i++){
         parent[i]=-1;
     }
 }
