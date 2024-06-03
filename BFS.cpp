@@ -37,9 +37,9 @@ void BFS(int ser,int n){
     visited[ser]=1;
     while(!q.empty()){
         int cur=q.pop();
-        char c=char(cur+65);
-        cout<<c<<" ";
-        for(int i=0;i<n;i++){
+        //char c=char(cur+65);
+        cout<<cur<<" ";
+        for(int i=1;i<=n;i++){
             if(g[cur][i]==1 && !visited[i]){
                 q.push(i);
                 visited[i]=1;
@@ -53,14 +53,14 @@ int main(){
     char s;
     ifstream x("temp.txt");
     x>>v>>e;
-    for(int i=0;i<v;i++){
-        for(int j=0;j<v;j++){
+    for(int i=1;i<=v;i++){
+        for(int j=1;j<=v;j++){
             x>>g[i][j];
         }
     }
     cout<<"GIve the st vr :";
-    cin>>s;
-    src=int(s-65);
+    cin>>src;
+    //src=int(s-65);
     cout<<"the result of BFS is ";
     BFS(src,v);
     return 0;
