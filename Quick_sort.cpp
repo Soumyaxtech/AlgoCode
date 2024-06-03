@@ -25,7 +25,10 @@ int pertition(int arr[],int low,int high){
 void Quick_sort(int arr[],int low,int high){
     if(low<high){
         int k=pertition(arr,low,high);
-        cout<<endl;
+        for(int i=low;i<k;i++){
+            cout<<arr[i];
+        }
+        cout<<"pivot is "<<arr[k];
         Quick_sort(arr,low,k-1);
         Quick_sort(arr,k+1,high);
     }
